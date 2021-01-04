@@ -31,10 +31,7 @@ function clearCheck() {
     }
 }
 
-function loadGame(e) {
-    if (e) {
-        e.preventDefault()
-    }
+function loadGame() {
 
     questionFetch()
     optionsFetch()
