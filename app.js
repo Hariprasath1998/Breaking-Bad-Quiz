@@ -22,17 +22,25 @@ function onPageLoad() {
     let submit = document.getElementById('submit');
     submit.addEventListener("click", checkAnswer);
     let change = document.getElementById('change');
-    change.addEventListener("click", loadGame)
+    change.addEventListener("click", reset)
 }
 
 function clearCheck() {
     for (i = 0; i < 4; i++) {
-        (optionsSelector[i].childNodes[1].checked = false)
+        optionsSelector[i].childNodes[3].classList.remove('correct')
+        optionsSelector[i].childNodes[3].classList.remove('wrong')
+        optionsSelector[i].childNodes[1].checked = false
     }
 }
 
-function loadGame() {
+function reset(e) {
+    e.preventDefault()
+    submit.disabled = false;
+    clearCheck()
+    loadGame()
+}
 
+function loadGame() {
     questionFetch()
     optionsFetch()
 }
@@ -89,13 +97,10 @@ function checkAnswer(e) {
     for (i = 0; i < 4; i++) {
         if (optionsSelector[i].childNodes[1].checked == true) {
             if (optionsSelector[i].childNodes[3].innerText == answer) {
-                // alert('Correct');
-                // loadGame();
                 optionsSelector[i].childNodes[3].classList += "correct"
                 submit.disabled = true;
                 change.innerText = 'Give Another'
             } else {
-                // alert('Wrong!')
                 optionsSelector[i].childNodes[3].classList += "wrong"
             }
         }
