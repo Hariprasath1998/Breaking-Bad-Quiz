@@ -31,7 +31,11 @@ function clearCheck() {
     }
 }
 
-function loadGame() {
+function loadGame(e) {
+    if (e) {
+        e.preventDefault()
+    }
+
     questionFetch()
     optionsFetch()
 }
