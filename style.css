@@ -1,0 +1,28 @@
+.buttons {
+    margin-top: 15px;
+}
+
+.holder {
+    margin-left: 5px;
+}
+
+body {
+    font-size: 25px !important;
+}
+
+p {
+    font-size: 2rem !important;
+    margin: 0;
+}
+
+span {
+    font-size: 1.2rem !important;
+}
+
+.correct {
+    color: green;
+}
+
+.wrong {
+    color: red;
+}
