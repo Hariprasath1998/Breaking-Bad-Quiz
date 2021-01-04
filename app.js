@@ -30,7 +30,6 @@ function clearCheck() {
         optionsSelector[i].childNodes[3].classList.remove('correct')
         optionsSelector[i].childNodes[3].classList.remove('wrong')
         optionsSelector[i].childNodes[1].checked = false
-        optionsSelector[i].childNodes[1].disabled = false
     }
 }
 
@@ -100,9 +99,6 @@ function checkAnswer(e) {
             if (optionsSelector[i].childNodes[3].innerText == answer) {
                 optionsSelector[i].childNodes[3].classList += "correct"
                 submit.disabled = true;
-                for (i = 0; i < 4; i++) {
-                    optionsSelector[i].childNodes[1].disabled = true
-                }
                 change.innerText = 'Give Another'
             } else {
                 optionsSelector[i].childNodes[3].classList += "wrong"
