@@ -30,6 +30,7 @@ function clearCheck() {
         optionsSelector[i].childNodes[3].classList.remove('correct')
         optionsSelector[i].childNodes[3].classList.remove('wrong')
         optionsSelector[i].childNodes[1].checked = false
+        optionsSelector[i].childNodes[1].disabled = false
     }
 }
 
@@ -50,24 +51,24 @@ async function questionFetch() {
     fetch(quoteSingle).then(response => response.json())
         .then(data => {
             question = data[0].quote;
-            options.push(data[0].author);
             answer = data[0].author;
+            options.push(answer);
         }).then(applyQuestion)
 }
 
 async function optionsFetch() {
     fetch(quoteMultiple).then(response => response.json())
         .then(data => {
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 15; i++) {
                 if (options.length > 3) {
                     break
                 } else {
                     if (options.indexOf(data[i].author) == -1) {
                         options.push(data[i].author)
-                        shuffle(options)
                     }
                 }
             }
+            shuffle(options)
         }).then(applyOptions);
 }
 
@@ -99,6 +100,9 @@ function checkAnswer(e) {
             if (optionsSelector[i].childNodes[3].innerText == answer) {
                 optionsSelector[i].childNodes[3].classList += "correct"
                 submit.disabled = true;
+                for (i = 0; i < 4; i++) {
+                    optionsSelector[i].childNodes[1].disabled = true
+                }
                 change.innerText = 'Give Another'
             } else {
                 optionsSelector[i].childNodes[3].classList += "wrong"
