@@ -12,7 +12,6 @@ quoteMultiple = `https://breaking-bad-quotes.herokuapp.com/v1/quotes/15`
 
 onPageLoad()
 loadGame()
-console.log(`Answer ${answer}`)
 
 function onPageLoad() {
     questionSelector = document.getElementById('question')
@@ -41,8 +40,6 @@ async function questionFetch() {
     options = []
     fetch(quoteSingle).then(response => response.json())
         .then(data => {
-            console.log(data[0].quote);
-            console.log(data[0].author);
             question = data[0].quote;
             options.push(data[0].author);
             answer = data[0].author;
@@ -53,13 +50,11 @@ async function optionsFetch() {
     fetch(quoteMultiple).then(response => response.json())
         .then(data => {
             for (let i = 0; i < 10; i++) {
-                console.log('here')
                 if (options.length > 3) {
                     break
                 } else {
                     if (options.indexOf(data[i].author) == -1) {
                         options.push(data[i].author)
-                        console.log('pushing')
                         shuffle(options)
                     }
                 }
