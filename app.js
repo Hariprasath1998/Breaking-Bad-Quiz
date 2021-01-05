@@ -67,7 +67,9 @@ async function optionsFetch() {
                     }
                 }
             }
+            console.log(options)
             shuffle(options)
+            console.log(options)
         }).then(applyOptions);
 }
 
